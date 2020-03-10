@@ -54,7 +54,7 @@ contribute please create a pull request.
 
 ## Authors
 
-- **[Matthias Dettling](md@devsecurity.io)**
+- **[Matthias Dettling](mailto:md@devsecurity.io)**
 
 ## License
 

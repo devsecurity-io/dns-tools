@@ -83,9 +83,9 @@ of the following error messages:
 
 ## Authors
 
-- **[Matthias Dettling](md@devsecurity.io)**
+- **[Matthias Dettling](mailto:md@devsecurity.io)**
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](../LICENSE)
 file for details.
