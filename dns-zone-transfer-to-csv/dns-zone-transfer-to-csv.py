@@ -37,7 +37,7 @@ import sys
 def zone_transfer(zone, server):
     try:
         zone = dns.zone.from_xfr(dns.query.xfr(server, zone))
-    except DNSException, e:
+    except DNSException as e:
         print(e.__class__, e)
         sys.exit(1)
 
@@ -104,7 +104,7 @@ def create_zone_dict(zone):
                     else:
                         print("Record type not implemented.")
                         sys.exit(1)
-    except DNSException, e:
+    except DNSException as e:
         print(e.__class__, e)
         sys.exit(1)
 
@@ -113,8 +113,7 @@ def create_zone_dict(zone):
 def write_zone_dict_to_csv_file(zone_dict, csv_filename):
     f = open(csv_filename, "w")
 
-    dns_names_sorted = zone_dict.keys()
-    dns_names_sorted.sort()
+    dns_names_sorted = sorted(zone_dict)
 
     for dns_name in dns_names_sorted:
         records = zone_dict[dns_name]
