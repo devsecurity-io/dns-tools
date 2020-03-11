@@ -13,8 +13,16 @@ system.
 
 First install the prerequisites:
 
+#### Python 2
+
 ```bash
-pip install dnspython
+python -m pip install dnspython
+```
+
+#### Python 3
+
+```bash
+python3 -m pip install dnspython
 ```
 
 ### Download Source Code
