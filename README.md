@@ -7,7 +7,7 @@ migration of a larger DNS system.
 |:-----------------------------|:--------|
 | **azure-zone-download**      | Download DNS records sets from an Azure DNS zone and save it as CSV file. |
 | **azure-zone-upload**        | Upload DNS records sets to an Azure DNS zone from a CSV file. |
-| **dns-zone-transfer-to-csv** | Download DNS record sets from a DNS server which supports DNS zone transfers and saves them in a CSV file. |
+| **dns-zone-transfer-to-csv** | Download DNS record sets from a DNS server which supports DNS zone transfers and saves them to a CSV file. |
 
 Each tool is located in its own sub directory of this repository and contains a
 dedicated README file with details about the tool.
