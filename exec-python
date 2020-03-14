@@ -1,0 +1,3 @@
+#!/bin/ash
+
+python "${0}.py" "$@"
