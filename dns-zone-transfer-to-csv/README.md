@@ -63,12 +63,12 @@ record types:
 - TSIG protected zone transfers are not yet supported.
 
 In case you have modified `dns-zone-transfer-to-csv` to support more record
-types please share it with the community and create a pull request.
+types, please share it with the community and create a pull request.
 
 ## Contributing
 
 If you consider `dns-zone-transfer-to-csv` to be useful and would like to
-contribute please create a pull request. This especially makes sense if you are
+contribute, please create a pull request. This especially makes sense if you are
 facing the following error message:
 
 `Record type not implemented.`

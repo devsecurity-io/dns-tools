@@ -3,7 +3,7 @@
 `azure-zone-upload` is a tool to add zone information to Azure DNS zones. It
 reads records from a CSV file and adds them to a DNS zone via the Azure API. 
 To avoid harm records already existing in the zone are skipped and a warning
-message is shown.
+is displayed.
 
 ## Getting Started
 
@@ -66,7 +66,8 @@ docker run --rm -i -t -v <local volume>:<container volume> devsecurity/dns-tools
 
 ## Known Limitations
 
-- `azure-zone-upload` can only handle the following DNS record types:
+- At the moment `azure-zone-upload` can only handle the following DNS record
+types:
   - A
   - AAAA
   - CNAME
@@ -74,12 +75,12 @@ docker run --rm -i -t -v <local volume>:<container volume> devsecurity/dns-tools
   Other record types are not supported at the moment. If such records exist in
   the CSV file provided, a warning is displayed.
 
-In case you have modified `azure-zone-upload` to support more record types
+In case you have modified `azure-zone-upload` to support more record types,
 please share it with the community and create a pull request.
 
 ## Contributing
 
-If you consider `azure-zone-upload` to be useful and would like to contribute
+If you consider `azure-zone-upload` to be useful and would like to contribute,
 please create a pull request. This especially makes sense if you are facing the following error message:
 
 `Record(s) of type <type> in CSV file which is currently not supported by the tool. Please handle records manually.`

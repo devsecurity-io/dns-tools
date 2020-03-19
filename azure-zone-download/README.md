@@ -79,17 +79,17 @@ docker run --rm -i -t -v <local volume>:<container volume> devsecurity/dns-tools
   - TXT
 
   These record types are recognized by `azure-zone-download` but are not
-  supported. If such a record exists in a zone downloaded then a warning is
+  supported. If such a record exists in a zone downloaded, then a warning is
   displayed.
 
-In case you have modified `azure-zone-download` to support more record types
+In case you have modified `azure-zone-download` to support more record types,
 please share it with the community and create a pull request.
 
 ## Contributing
 
-If you consider `azure-zone-download` to be useful and would like to contribute
-please create a pull request. This especially makes sense if you are facing one
-of the following error messages:
+If you consider `azure-zone-download` to be useful and would like to
+contribute, please create a pull request. This especially makes sense if you
+are facing one of the following error messages:
 
 - `CAA records exist in the zone but CAA records are not supported by this tool. Hence this record types are missing in the CSV file.`
 - `MX records exist in the zone but MX records are not supported by this tool. Hence this record types are missing in the CSV file.`
