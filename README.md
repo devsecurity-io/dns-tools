@@ -37,7 +37,7 @@ of the tool.
 If you prefer to use the Docker container then execution syntax is as follows:
 
 ```bash
-$ docker run --rm -i -t -v /Users:/Users devsecurity/dns-tools:latest
+$ docker run --rm -i -t -v <local volume>:<container volume> devsecurity/dns-tools:latest
 Usage: docker run --rm -i -v <local volume>:<container volume> devsecurity/dns-tools:<tag> <command> <command parameters>
 
 Tags:
@@ -59,6 +59,12 @@ not be able to access files on your local system. Syntax for that is:
 
 ```
 -v <local volume>:<container volume>
+```
+
+Example:
+
+```
+-v /Users:/Users
 ```
 
 Similarly as when executed locally, the exact script paramters for each tool
