@@ -35,7 +35,7 @@ def rchop(string, suffix):
 
 
 def main():
-    sys.stderr.write("Usage: docker run --rm -i -v <local volume>:<container volume> devsecurity/dns-tools:<tag> <command>\n\n")
+    sys.stderr.write("Usage: docker run --rm -i -v <local volume>:<container volume> devsecurity/dns-tools:<tag> <command> <command parameters>\n\n")
     sys.stderr.write("Tags:\n")
     sys.stderr.write("\tlatest\n\n")
 
