@@ -142,6 +142,7 @@ def main():
             for ns_record in record_set.ns_records:
                 ref_name = ns_record.nsdname
                 if not ref_name.endswith("."):
+                    warnings.append("Name %s referenced by NS record %s is not terminated with a dot (\".\"). This might cause unexpected behavior in Azure DNS." % (ref_name, dns_name))
                     ref_name = "%s.%s." % (ref_name, zone_name)
                 
                 csv_row = "%s;%s;NS;%s\n" % (dns_name, record_set.ttl, ref_name)
@@ -159,6 +160,7 @@ def main():
         if record_set.cname_record is not None:
             ref_name = record_set.cname_record.cname
             if not ref_name.endswith("."):
+                warnings.append("Name %s referenced by CNAME record %s is not terminated with a dot (\".\"). This might cause unexpected behavior in Azure DNS." % (ref_name, dns_name))
                 ref_name = "%s.%s." % (ref_name, zone_name)
 
             csv_row = "%s;%s;CNAME;%s\n" % (dns_name, record_set.ttl, ref_name)
@@ -174,6 +176,7 @@ def main():
             minimum_ttl   = record_set.soa_record.minimum_ttl
 
             if not host.endswith("."):
+                warnings.append("Name %s referenced by SOA record %s is not terminated with a dot (\".\"). This might cause unexpected behavior in Azure DNS." % (host, dns_name))
                 host = "%s.%s." % (host, zone_name)
             
             data = "%s %s %d %d %d %d %d" % (host, email, serial_number, refresh_time, retry_time, expire_time, minimum_ttl)

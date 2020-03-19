@@ -202,9 +202,10 @@ def main():
 
                 ref_name = record["data"]
                 # Azure DNS seems to not support relative names
-                #ref_name = re.sub(r"(^|\.)%s\.$" % zone_name, r"", ref_name)
-                if ref_name == "":
-                    ref_name = "@"
+                if not ref_name.endswith("."):
+                    ref_name_old = ref_name
+                    ref_name = "%s.%s." % (ref_name, zone_name)
+                    warnings.append("Name %s referenced by CNAME record %s is not terminated with a dot (\".\"). This might cause unexpected behavior in Azure DNS. Hence, zone name was added to the name: %s" % (ref_name_old, name, ref_name))
                 
                 cname_record_set["data"].append(ref_name)
             
@@ -268,7 +269,7 @@ def main():
 
         if cname_record_set["data"] != []:
             if len(cname_record_set["data"]) > 1:
-                errors.append("More than one alias in CNAME record set for name %s. This is not valid, record set skipped." % name)
+                errors.append("More than one alias in CNAME record set for name %s. This is not valid! Record set skipped." % name)
             else:
                 record_set = {
                     "ttl": cname_record_set["ttl"],

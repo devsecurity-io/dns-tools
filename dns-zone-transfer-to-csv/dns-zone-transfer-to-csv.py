@@ -54,56 +54,63 @@ def create_zone_dict(zone):
                 dns_name = origin
             else:
                 dns_name = "%s.%s" % (str(name), origin)
+            
             for rdataset in rdatasets:
                 ttl = rdataset.ttl
-                for rdata in rdataset:
-                    if rdataset.rdtype == SOA:
-                        data = "%s %s %s %s %s %s %s" % (rdata.mname, rdata.rname, rdata.serial, rdata.refresh, rdata.retry, rdata.expire, rdata.minimum) 
+
+                if rdataset.rdtype == SOA:
+                    for rdata in rdataset:
+                        mname = str(rdata.mname)
+                        if not mname.endswith("."):
+                            mname = "%s.%s." % (mname, origin)
+                        
+                        data = "%s %s %s %s %s %s %s" % (mname, rdata.rname, rdata.serial, rdata.refresh, rdata.retry, rdata.expire, rdata.minimum) 
                         
                         if dns_name in zone_dict:
                             zone_dict[dns_name].append({"ttl": ttl, "type": "SOA", "data": data})
                         else:
                             zone_dict[dns_name] = [ {"ttl": ttl, "type": "SOA", "data": data} ]
                     
-                    elif rdataset.rdtype == NS:
+                elif rdataset.rdtype == NS:
+                    for rdata in rdataset:
                         target = str(rdata.target)
-                        if target.endswith("."):
-                            target = re.sub(r"\.$", r"", target)
-                        else:
-                            target = "%s.%s" % (target, origin)
+                        if not target.endswith("."):
+                            target = "%s.%s." % (target, origin)
                         
                         if dns_name in zone_dict:
                             zone_dict[dns_name].append({"ttl": ttl, "type": "NS", "data": target})
                         else:
                             zone_dict[dns_name] = [ {"ttl": ttl, "type": "NS", "data": target} ]
                     
-                    elif rdataset.rdtype == CNAME:
+                elif rdataset.rdtype == CNAME:
+                    for rdata in rdataset:
                         target = str(rdata.target)
-                        if target.endswith("."):
-                            target = re.sub(r"\.$", r"", target)
-                        else:
-                            target = "%s.%s" % (target, origin)
+                        if not target.endswith("."):
+                            target = "%s.%s." % (target, origin)
                         
                         if dns_name in zone_dict:
                             zone_dict[dns_name].append({"ttl": ttl, "type": "CNAME", "data": target})
                         else:
                             zone_dict[dns_name] = [ {"ttl": ttl, "type": "CNAME", "data": target} ]
                     
-                    elif rdataset.rdtype == A:
+                elif rdataset.rdtype == A:
+                    for rdata in rdataset:
                         if dns_name in zone_dict:
                             zone_dict[dns_name].append({"ttl": ttl, "type": "A", "data": str(rdata.address)})
                         else:
                             zone_dict[dns_name] = [ {"ttl": ttl, "type": "A", "data": str(rdata.address)} ]
                     
-                    elif rdataset.rdtype == AAAA:
+                elif rdataset.rdtype == AAAA:
+                    for rdata in rdataset:
                         if dns_name in zone_dict:
                             zone_dict[dns_name].append({"ttl": ttl, "type": "AAAA", "data": str(rdata.address)})
                         else:
                             zone_dict[dns_name] = [ {"ttl": ttl, "type": "AAAA", "data": str(rdata.address)} ]
                     
-                    else:
-                        print("Record type not implemented.")
-                        sys.exit(1)
+                else:
+                    print("Record type not implemented.")
+                    sys.exit(1)
+    
     except DNSException as e:
         print(e.__class__, e)
         sys.exit(1)
